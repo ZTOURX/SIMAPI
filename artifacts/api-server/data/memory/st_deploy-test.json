@@ -1,0 +1,24 @@
+{
+  "threadId": "deploy-test",
+  "messages": [
+    {
+      "id": "c75a6011-2eab-4048-8b15-6083d82c1a46",
+      "role": "user",
+      "content": "ping",
+      "timestamp": 1781307379009,
+      "intent": "status",
+      "keywords": [
+        "ping"
+      ]
+    },
+    {
+      "id": "b4840972-b29a-4037-bbba-9183804a6c12",
+      "role": "assistant",
+      "content": "Yes, I'm here and ready!",
+      "timestamp": 1781307379019
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781307379019,
+  "turnCount": 2
+}

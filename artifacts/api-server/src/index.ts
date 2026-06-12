@@ -3,7 +3,7 @@ import { logger } from "./lib/logger.js";
 import { updateKnowledgeEmbeddings } from "./core/knowledge-engine.js";
 
 const rawPort = process.env["PORT"];
-const port = rawPort ? Number(rawPort) : 5000;
+const port = rawPort ? Number(rawPort) : 3000;
 
 if (Number.isNaN(port) || port <= 0) {
   throw new Error(`Invalid PORT value: "${rawPort}"`);

@@ -34,5 +34,14 @@
     "latencyMs": 2,
     "tokensUsed": 0,
     "intent": "memory"
+  },
+  {
+    "id": "61d101fd-26d9-4115-8066-ce4286aff99a",
+    "timestamp": 1781307379020,
+    "threadId": "deploy-test",
+    "mode": "native",
+    "latencyMs": 3,
+    "tokensUsed": 0,
+    "intent": "status"
   }
 ]
