@@ -1,0 +1,1 @@
+- [CatBot AI Platform Architecture](catbot-ai-platform.md) — self-hosted AI backend; native inference uses hash-based embeddings (512d) + pattern matching + intent classification; JSON storage in artifacts/api-server/data/

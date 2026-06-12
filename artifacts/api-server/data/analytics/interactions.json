@@ -1,0 +1,38 @@
+[
+  {
+    "id": "49343666-9d8b-4808-b178-94820f538809",
+    "timestamp": 1781287656935,
+    "threadId": "test-thread-001",
+    "mode": "native",
+    "latencyMs": 4,
+    "tokensUsed": 0,
+    "intent": "greeting"
+  },
+  {
+    "id": "11ea8b7a-7f1f-4945-9a76-edc35a989a7a",
+    "timestamp": 1781287676219,
+    "threadId": "test-thread-001",
+    "mode": "native",
+    "latencyMs": 7,
+    "tokensUsed": 0,
+    "intent": "question"
+  },
+  {
+    "id": "804ef3db-50cb-42a6-952d-a5b6a8c1773b",
+    "timestamp": 1781287676283,
+    "threadId": "test-thread-001",
+    "mode": "native",
+    "latencyMs": 2,
+    "tokensUsed": 0,
+    "intent": "unknown"
+  },
+  {
+    "id": "4c793e54-f0ff-4749-82eb-73904a778ed4",
+    "timestamp": 1781287676333,
+    "threadId": "test-thread-001",
+    "mode": "native",
+    "latencyMs": 2,
+    "tokensUsed": 0,
+    "intent": "memory"
+  }
+]

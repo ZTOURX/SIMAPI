@@ -1,0 +1,19 @@
+{
+  "id": "test-thread-001",
+  "name": "Thread test-thr",
+  "personalityId": "catbot-default",
+  "settings": {
+    "maxMemoryEntries": 100,
+    "compressionThreshold": 50,
+    "longTermMemoryEnabled": true,
+    "learningEnabled": true,
+    "contextWindowSize": 20,
+    "responseStyle": "conversational"
+  },
+  "metadata": {},
+  "createdAt": 1781287656925,
+  "updatedAt": 1781287676333,
+  "lastActivity": 1781287676333,
+  "messageCount": 4,
+  "isActive": true
+}

@@ -1,0 +1,81 @@
+{
+  "threadId": "test-thread-001",
+  "messages": [
+    {
+      "id": "2c15dc09-0407-4d97-917b-18f19fcf1af2",
+      "role": "user",
+      "content": "Hello Cat-Bot! What can you do?",
+      "timestamp": 1781287656926,
+      "intent": "greeting",
+      "keywords": [
+        "hello",
+        "cat",
+        "bot"
+      ]
+    },
+    {
+      "id": "8e11e3e4-72bb-4281-9b7a-58bb0cd5e173",
+      "role": "assistant",
+      "content": "Hello! How can I help you today?",
+      "timestamp": 1781287656934
+    },
+    {
+      "id": "8a2143c8-c531-463f-b12d-4429a8aea539",
+      "role": "user",
+      "content": "Tell me about Cat-Bot platforms",
+      "timestamp": 1781287676206,
+      "intent": "question",
+      "keywords": [
+        "tell",
+        "cat",
+        "bot",
+        "platforms"
+      ]
+    },
+    {
+      "id": "4918b5fd-51e6-4f6b-a4a6-a23c28672aec",
+      "role": "assistant",
+      "content": "Based on my knowledge about \"Conversation State Management\": Cat-Bot scopes conversation state to messageId:userId pairs for private flows and messageId:threadId for public flows, preventing race conditions in multi-instance deployments.",
+      "timestamp": 1781287676218
+    },
+    {
+      "id": "ebbf68eb-150a-45cb-aa62-97f292959745",
+      "role": "user",
+      "content": "My name is Alex and I prefer short answers",
+      "timestamp": 1781287676275,
+      "intent": "unknown",
+      "keywords": [
+        "name",
+        "alex",
+        "prefer",
+        "short",
+        "answers"
+      ]
+    },
+    {
+      "id": "798076ee-4622-4085-9cc2-d169041251cf",
+      "role": "assistant",
+      "content": "Based on my knowledge about \"Thread Isolation\": Each thread has isolated short-term and long-term memory. Memory is not shared between threads. Thread settings control context window size, compression threshold, and learning behavior.",
+      "timestamp": 1781287676283
+    },
+    {
+      "id": "b922050a-ef93-48a3-bc5f-cb6bc93a8aaf",
+      "role": "user",
+      "content": "What do you remember about me?",
+      "timestamp": 1781287676330,
+      "intent": "memory",
+      "keywords": [
+        "remember"
+      ]
+    },
+    {
+      "id": "2f847d5f-fbba-49e9-9018-48c59f1a3197",
+      "role": "assistant",
+      "content": "Based on our conversation history, I recall: User's name is: Alex and I prefer short answers, User prefers: short answers. Is there something specific you'd like to know about what we've discussed?",
+      "timestamp": 1781287676333
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781287676333,
+  "turnCount": 8
+}
