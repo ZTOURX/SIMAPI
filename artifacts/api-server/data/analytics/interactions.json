@@ -62,5 +62,14 @@
     "latencyMs": 10,
     "tokensUsed": 0,
     "intent": "question"
+  },
+  {
+    "id": "f4a2c547-dc0e-40ac-8c18-be9374449e9d",
+    "timestamp": 1781308451780,
+    "threadId": "deploy-verify",
+    "mode": "native",
+    "latencyMs": 4,
+    "tokensUsed": 0,
+    "intent": "greeting"
   }
 ]

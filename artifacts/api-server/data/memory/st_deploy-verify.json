@@ -1,0 +1,24 @@
+{
+  "threadId": "deploy-verify",
+  "messages": [
+    {
+      "id": "0c0ae61d-596c-4e0e-aa68-d4998224f71f",
+      "role": "user",
+      "content": "Hello!",
+      "timestamp": 1781308451769,
+      "intent": "greeting",
+      "keywords": [
+        "hello"
+      ]
+    },
+    {
+      "id": "658c3e79-625e-413b-9aeb-44c0e4533e33",
+      "role": "assistant",
+      "content": "Hi there! What can I do for you?",
+      "timestamp": 1781308451779
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781308451779,
+  "turnCount": 2
+}
