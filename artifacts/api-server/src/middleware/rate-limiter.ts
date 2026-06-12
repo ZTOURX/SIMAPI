@@ -1,5 +1,9 @@
-import rateLimit, { ipKeyGenerator } from "express-rate-limit";
+import rateLimit from "express-rate-limit";
 import type { Request, Response } from "express";
+
+function resolveIp(req: Request): string {
+  return req.ip ?? req.socket?.remoteAddress ?? "unknown";
+}
 
 export const chatRateLimiter = rateLimit({
   windowMs: 60 * 1000,
@@ -9,7 +13,7 @@ export const chatRateLimiter = rateLimit({
   keyGenerator: (req: Request) => {
     const threadId = (req.body as Record<string, unknown>)?.threadId as string | undefined;
     if (threadId) return `chat:${threadId}`;
-    return `chat:${ipKeyGenerator(req)}`;
+    return `chat:${resolveIp(req)}`;
   },
   handler: (_req: Request, res: Response) => {
     res.status(429).json({

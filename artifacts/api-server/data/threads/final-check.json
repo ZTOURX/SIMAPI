@@ -1,0 +1,19 @@
+{
+  "id": "final-check",
+  "name": "Thread final-ch",
+  "personalityId": "catbot-default",
+  "settings": {
+    "maxMemoryEntries": 100,
+    "compressionThreshold": 50,
+    "longTermMemoryEnabled": true,
+    "learningEnabled": true,
+    "contextWindowSize": 20,
+    "responseStyle": "conversational"
+  },
+  "metadata": {},
+  "createdAt": 1781307770822,
+  "updatedAt": 1781307770844,
+  "lastActivity": 1781307770843,
+  "messageCount": 1,
+  "isActive": true
+}

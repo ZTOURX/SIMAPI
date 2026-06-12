@@ -1,0 +1,19 @@
+{
+  "id": "42e43788-12dc-4fec-a0af-a457527b248c",
+  "name": "Verify Thread",
+  "personalityId": "catbot-default",
+  "settings": {
+    "maxMemoryEntries": 100,
+    "compressionThreshold": 50,
+    "longTermMemoryEnabled": true,
+    "learningEnabled": true,
+    "contextWindowSize": 20,
+    "responseStyle": "conversational"
+  },
+  "metadata": {},
+  "createdAt": 1781307685379,
+  "updatedAt": 1781307685379,
+  "lastActivity": 1781307685379,
+  "messageCount": 0,
+  "isActive": true
+}

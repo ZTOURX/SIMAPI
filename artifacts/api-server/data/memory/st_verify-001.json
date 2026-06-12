@@ -1,0 +1,27 @@
+{
+  "threadId": "verify-001",
+  "messages": [
+    {
+      "id": "1bc2f597-2457-4bb9-86a8-18a42624e623",
+      "role": "user",
+      "content": "What platforms does Cat-Bot support?",
+      "timestamp": 1781307683041,
+      "intent": "greeting",
+      "keywords": [
+        "platforms",
+        "cat",
+        "bot",
+        "support"
+      ]
+    },
+    {
+      "id": "02a114ea-06a8-4626-97e0-6b61509ad70c",
+      "role": "assistant",
+      "content": "Hi there! What can I do for you?",
+      "timestamp": 1781307683054
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781307683054,
+  "turnCount": 2
+}

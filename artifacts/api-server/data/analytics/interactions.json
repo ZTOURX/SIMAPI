@@ -43,5 +43,24 @@
     "latencyMs": 3,
     "tokensUsed": 0,
     "intent": "status"
+  },
+  {
+    "id": "c0f7f9d0-4a97-4bb1-a499-7bb5b9852dd8",
+    "timestamp": 1781307683055,
+    "threadId": "verify-001",
+    "userId": "test-user",
+    "mode": "native",
+    "latencyMs": 5,
+    "tokensUsed": 0,
+    "intent": "greeting"
+  },
+  {
+    "id": "15d4ccd3-0d1b-4a1b-a883-e66cd9a2b6e8",
+    "timestamp": 1781307770844,
+    "threadId": "final-check",
+    "mode": "native",
+    "latencyMs": 10,
+    "tokensUsed": 0,
+    "intent": "question"
   }
 ]

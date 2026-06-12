@@ -1,0 +1,25 @@
+{
+  "threadId": "final-check",
+  "messages": [
+    {
+      "id": "18298bc7-5c1f-4f29-9cca-0bbbf0b964aa",
+      "role": "user",
+      "content": "What is Cat-Bot?",
+      "timestamp": 1781307770823,
+      "intent": "question",
+      "keywords": [
+        "cat",
+        "bot"
+      ]
+    },
+    {
+      "id": "29e7bc15-2eb2-4def-8f1b-a790fb2e4b72",
+      "role": "assistant",
+      "content": "Based on my knowledge about \"Thread Isolation\": Each thread has isolated short-term and long-term memory. Memory is not shared between threads. Thread settings control context window size, compression threshold, and learning behavior.",
+      "timestamp": 1781307770843
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781307770843,
+  "turnCount": 2
+}
