@@ -1,0 +1,19 @@
+{
+  "id": "pg-migration-test",
+  "name": "Thread pg-migra",
+  "personalityId": "catbot-default",
+  "settings": {
+    "maxMemoryEntries": 100,
+    "compressionThreshold": 50,
+    "longTermMemoryEnabled": true,
+    "learningEnabled": true,
+    "contextWindowSize": 20,
+    "responseStyle": "conversational"
+  },
+  "metadata": {},
+  "createdAt": 1781316622309,
+  "updatedAt": 1781316631987,
+  "lastActivity": 1781316631987,
+  "messageCount": 2,
+  "isActive": true
+}

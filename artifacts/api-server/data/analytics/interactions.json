@@ -71,5 +71,23 @@
     "latencyMs": 4,
     "tokensUsed": 0,
     "intent": "greeting"
+  },
+  {
+    "id": "9d9e4101-167b-4ae1-8310-4ffb4ba17ec4",
+    "timestamp": 1781316622342,
+    "threadId": "pg-migration-test",
+    "mode": "native",
+    "latencyMs": 6,
+    "tokensUsed": 0,
+    "intent": "memory"
+  },
+  {
+    "id": "d69fda67-6c04-469f-a512-e0216fd69642",
+    "timestamp": 1781316631988,
+    "threadId": "pg-migration-test",
+    "mode": "native",
+    "latencyMs": 7,
+    "tokensUsed": 0,
+    "intent": "memory"
   }
 ]

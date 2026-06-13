@@ -1,0 +1,44 @@
+{
+  "threadId": "pg-migration-test",
+  "messages": [
+    {
+      "id": "575bb0a2-9001-4c53-a130-bcd7468246e5",
+      "role": "user",
+      "content": "Remember this: my name is Marco",
+      "timestamp": 1781316622311,
+      "intent": "memory",
+      "keywords": [
+        "remember",
+        "name",
+        "marco"
+      ]
+    },
+    {
+      "id": "a5ccf161-0ff4-4ee2-8381-5a2bb8f2cebc",
+      "role": "assistant",
+      "content": "Hello! How can I help you today?",
+      "timestamp": 1781316622340
+    },
+    {
+      "id": "39e46053-8303-410f-abf1-8c55ff0ef19d",
+      "role": "user",
+      "content": "Remember this: my name is Marco",
+      "timestamp": 1781316631975,
+      "intent": "memory",
+      "keywords": [
+        "remember",
+        "name",
+        "marco"
+      ]
+    },
+    {
+      "id": "16fb7f90-a115-4cc3-be21-b4be375d918f",
+      "role": "assistant",
+      "content": "Hi there! What can I do for you?",
+      "timestamp": 1781316631987
+    }
+  ],
+  "context": {},
+  "lastActivity": 1781316631987,
+  "turnCount": 4
+}
