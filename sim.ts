@@ -7,7 +7,7 @@ import type { CommandConfig } from '@/engine/types/module-config.types.js';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import path from 'path';
 
-const CATBOT_API_URL = 'https://cat-bot-core-intelligence--ztourx.replit.app';
+const BASE_URL = 'https://cat-bot-core-intelligence--ztourx.replit.app';
 const DB_PATH = path.resolve(process.cwd(), 'sim-data.json');
 
 type ThreadState = {
@@ -79,23 +79,34 @@ export const config: CommandConfig = {
 
 // ================= AI CORE =================
 
-const askAI = async (input: string, threadId: string): Promise<string> => {
-  const res = await fetch(`${CATBOT_API_URL}/api/chat`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      message: input,
-      threadId,
-    }),
-  });
+const askAI = async (
+  input: string,
+  threadId: string
+): Promise<string> => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: input,
+        threadId,
+      }),
+    });
 
-  if (!res.ok) throw new Error(`API ERROR: ${res.status}`);
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`API ERROR ${res.status}: ${errorText}`);
+    }
 
-  const data = (await res.json()) as { response: string };
+    const data = await res.json();
 
-  return data.response || '...';
+    return data?.response || 'Walang response mula sa Cat-Bot API.';
+  } catch (err) {
+    console.error('SIM API ERROR:', err);
+    return '❌ Hindi ma-contact ang Cat-Bot API.';
+  }
 };
 
 // ================= EVENT (AUTO REPLY) =================
