@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "u3YHuw9O1kauxdbMaWzq7"
+uri = "file://API_DOCUMENTATION.md"
+type = "text"
+title = "Cat-Bot AI Platform — Integration Documentation"
