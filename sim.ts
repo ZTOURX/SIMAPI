@@ -4,55 +4,25 @@ import { MessageStyle } from '@/engine/constants/message-style.constants.js';
 import { OptionType } from '@/engine/modules/command/command-option.constants.js';
 import type { CommandConfig } from '@/engine/types/module-config.types.js';
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
-import path from 'path';
-
 const BASE_URL = 'https://cat-bot-core-intelligence--ztourx.replit.app';
-const DB_PATH = path.resolve(process.cwd(), 'sim-data.json');
 
-type ThreadState = {
-  isOn: boolean;
-  model: string;
-};
+// ================= STATE =================
+// In-memory state scoped per `${userId}:${sessionId}:${threadID}` —
+// required by Cat-Bot multi-instance safety rules (no flat files allowed).
+// State is ephemeral: resets on server restart, which is acceptable for on/off toggle.
 
-// ================= DB =================
+type ThreadState = { isOn: boolean; model: string };
 
-const loadDB = (): Record<string, ThreadState> => {
-  try {
-    if (!existsSync(DB_PATH)) {
-      writeFileSync(DB_PATH, '{}');
-      return {};
-    }
-    return JSON.parse(readFileSync(DB_PATH, 'utf-8') || '{}');
-  } catch {
-    return {};
+const stateMap = new Map<string, ThreadState>();
+
+const makeKey = (userId: string, sessionId: string, threadID: string): string =>
+  `${userId}:${sessionId}:${threadID}`;
+
+const getState = (key: string): ThreadState => {
+  if (!stateMap.has(key)) {
+    stateMap.set(key, { isOn: false, model: 'native' });
   }
-};
-
-let db = loadDB();
-
-const saveDB = () => {
-  try {
-    writeFileSync(DB_PATH, JSON.stringify(db, null, 2));
-  } catch (err) {
-    console.error('DB SAVE ERROR:', err);
-  }
-};
-
-const getThread = (id: string): ThreadState => {
-  if (!db[id]) {
-    db[id] = {
-      isOn: false,
-      model: 'native',
-    };
-    saveDB();
-  }
-  return db[id];
-};
-
-const updateThread = (id: string, data: ThreadState) => {
-  db[id] = data;
-  saveDB();
+  return stateMap.get(key)!;
 };
 
 // ================= CONFIG =================
@@ -109,100 +79,86 @@ const askAI = async (
   }
 };
 
-// ================= EVENT (AUTO REPLY) =================
+// ================= AUTO REPLY (onChat) =================
+// onChat fires for every incoming message — before prefix parsing and command dispatch.
+// This is the correct hook for passive auto-reply in Cat-Bot (not onEvent).
 
-export const onEvent = async ({ chat, message }: AppCtx & { message: any }) => {
-  const body = message?.body?.trim();
+export const onChat = async ({ chat, event, native }: AppCtx): Promise<void> => {
+  const body = (event['message'] as string | undefined)?.trim();
   if (!body) return;
 
-  const lower = body.toLowerCase();
+  const threadID = event['threadID'] as string | undefined;
+  if (!threadID) return;
 
-  if (lower.startsWith('/')) return;
-
-  const threadId =
-    (chat as any).threadID ||
-    (chat as any).chatID ||
-    (chat as any).id;
-
-  if (!threadId) return;
-
-  const thread = getThread(threadId);
+  const { userId, sessionId } = native;
+  const key = makeKey(userId, sessionId, threadID);
+  const thread = getState(key);
 
   if (!thread.isOn) return;
 
-  try {
-    const reply = await askAI(body, threadId);
+  // Use sessionId:threadID as the AI conversation key so each bot session
+  // has its own isolated memory on the Cat-Bot AI Platform.
+  const aiThreadId = `${sessionId}:${threadID}`;
+  const reply = await askAI(body, aiThreadId);
 
-    await chat.replyMessage({
-      style: MessageStyle.MARKDOWN,
-      message: reply,
-    });
-  } catch (err) {
-    console.error('AUTO REPLY ERROR:', err);
-  }
+  await chat.replyMessage({
+    style: MessageStyle.MARKDOWN,
+    message: reply,
+  });
 };
 
 // ================= COMMAND =================
 
-export const onCommand = async ({ chat, args }: AppCtx) => {
+export const onCommand = async ({ chat, args, event, native }: AppCtx): Promise<void> => {
   const input = args.join(' ').trim();
 
-  const threadId =
-    (chat as any).threadID ||
-    (chat as any).chatID ||
-    (chat as any).id;
+  const threadID = event['threadID'] as string | undefined;
+  if (!threadID) return;
 
-  const thread = getThread(threadId);
+  const { userId, sessionId } = native;
+  const key = makeKey(userId, sessionId, threadID);
+  const thread = getState(key);
 
   if (!input) {
-    return chat.replyMessage({
+    await chat.replyMessage({
       style: MessageStyle.MARKDOWN,
-      message:
-        'SIM COMMANDS:\n• sim on\n• sim off\n• sim model <name>\n• sim <message>',
+      message: 'SIM COMMANDS:\n• sim on\n• sim off\n• sim model <name>\n• sim <message>',
     });
+    return;
   }
 
   if (input === 'on') {
     thread.isOn = true;
-    updateThread(threadId, thread);
-
-    return chat.replyMessage({
+    await chat.replyMessage({
       style: MessageStyle.MARKDOWN,
       message: '🔥 SIM BARDAGULAN MODE ON NA ACCHA',
     });
+    return;
   }
 
   if (input === 'off') {
     thread.isOn = false;
-    updateThread(threadId, thread);
-
-    return chat.replyMessage({
+    await chat.replyMessage({
       style: MessageStyle.MARKDOWN,
       message: '💤 SIM OFF NA (tahimik muna ako)',
     });
+    return;
   }
 
   if (args[0] === 'model' && args[1]) {
     thread.model = args[1].toLowerCase();
-    updateThread(threadId, thread);
-
-    return chat.replyMessage({
+    await chat.replyMessage({
       style: MessageStyle.MARKDOWN,
       message: `MODEL SWITCHED: ${thread.model}`,
     });
+    return;
   }
 
-  try {
-    const reply = await askAI(input, threadId);
+  const aiThreadId = `${sessionId}:${threadID}`;
+  const reply = await askAI(input, aiThreadId);
 
-    return chat.replyMessage({
-      style: MessageStyle.MARKDOWN,
-      message: reply,
-    });
-  } catch (err) {
-    console.error('COMMAND ERROR:', err);
-  }
+  await chat.replyMessage({
+    style: MessageStyle.MARKDOWN,
+    message: reply,
+  });
 };
-
-export const handleEvent = onEvent;
-export const onChat = onEvent;
